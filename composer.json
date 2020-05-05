@@ -1,0 +1,37 @@
+{
+    "name": "jacquesndl/mailer-bundle",
+    "type": "symfony-bundle",
+    "description": "Jacquesndl/MailerBundle",
+    "keywords": [
+        "Symfony",
+        "Bundle",
+        "Jacquesndl",
+        "MailerBundle"
+    ],
+    "homepage": "https://github.com/jacquesndl/MailerBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jacques de Lamballerie",
+            "email": "jndl@protonmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.2",
+        "symfony/framework-bundle": "^4.4|^5.0",
+        "symfony/mailer": "^4.4|^5.0",
+        "symfony/twig-bundle": "^4.4|^5.0",
+        "twig/twig": "^2.0",
+        "symfony/maker-bundle": "^1.15"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Jacquesndl\\MailerBundle\\": "src/"
+        }
+    }
+}
