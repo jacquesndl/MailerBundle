@@ -7,6 +7,7 @@ use Jacquesndl\MailerBundle\Message\WrappedTemplatedEmail;
 use League\HTMLToMarkdown\HtmlConverter;
 use Symfony\Component\Mime\BodyRendererInterface;
 use Symfony\Component\Mime\Message;
+use Throwable;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -35,9 +36,11 @@ class BodyRenderer implements BodyRendererInterface
     }
 
     /**
+     * @param Message $message
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
+     * @throws Throwable
      */
     public function render(Message $message): void
     {
@@ -51,7 +54,7 @@ class BodyRenderer implements BodyRendererInterface
             'email' => new WrappedTemplatedEmail($this->twig, $message),
         ]);
 
-        $template = $this->twig->loadTemplate($message->getTemplate());
+        $template = $this->twig->load($message->getTemplate());
         $subject = $template->renderBlock('subject', $vars);
         $html = $template->renderBlock('html', $vars);
         $text = $template->hasBlock('text', []) ? $template->renderBlock('text', $vars) : null;
