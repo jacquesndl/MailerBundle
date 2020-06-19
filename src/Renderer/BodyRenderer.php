@@ -54,13 +54,7 @@ class BodyRenderer implements BodyRendererInterface
         $template = $this->twig->loadTemplate($message->getTemplate());
         $subject = $template->renderBlock('subject', $vars);
         $html = $template->renderBlock('html', $vars);
-        try {
-            if (empty($text = $template->renderBlock('text', $vars))) {
-                $text = null;
-            }
-        } catch (RuntimeError $exception) {
-            $text = null;
-        }
+        $text = $template->hasBlock('text', []) ? $template->renderBlock('text', $vars) : null;
 
         $message->subject($subject);
         $message->text($text);
